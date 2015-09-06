@@ -119,6 +119,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinrules.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinscreenedges.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintabbox.so
+%dir %{_libdir}/qt5/plugins/kwin
+%dir %{_libdir}/qt5/plugins/kwin/effects
+%dir %{_libdir}/qt5/plugins/kwin/effects/configs
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kcm_kwin4_genericscripted.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_blur_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_coverswitch_config.so
@@ -146,6 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwincompositing.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kdecoration2/kwin5_aurorae.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kglobalaccel5.platforms/KF5GlobalAccelPrivateKWin.so
+%dir %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandDrmBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandFbdevBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandWaylandBackend.so
@@ -177,4 +181,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwineffects.so
 %attr(755,root,root) %{_libdir}/libkwinglutils.so
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so
-%{_libdir}/cmake/KWinDBusInterface/KWinDBusInterfaceConfig.cmake
+%{_libdir}/cmake/KWinDBusInterface
