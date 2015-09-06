@@ -13,6 +13,7 @@ License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	38b4a6d540ec6bbe94c0ec658c47eb5c
+Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
 BuildRequires:	Mesa-libgbm-devel
@@ -38,8 +39,10 @@ BuildRequires:	kf5-kwidgetsaddons-devel
 BuildRequires:	kf5-kwindowsystem-devel
 BuildRequires:	kf5-kxmlgui-devel
 BuildRequires:	kf5-plasma-framework-devel
+BuildRequires:	kp5-kwayland-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libepoxy-devel
+BuildRequires:	libinput-devel
 BuildRequires:	libxcb-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	udev-devel
@@ -70,6 +73,7 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
+%patch0 -p1
 
 %build
 install -d build
