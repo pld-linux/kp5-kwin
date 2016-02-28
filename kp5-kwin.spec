@@ -1,23 +1,24 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.4.0
-%define		qtver		5.3.2
+%define		kdeplasmaver	5.5.4
+%define		qtver		5.5.1
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.4.0
-Release:	2
+Version:	5.5.4
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	38b4a6d540ec6bbe94c0ec658c47eb5c
+# Source0-md5:	d719b7258a5fa9bf2dae770a20fa4e2d
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
 BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5PlatformSupport-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	kf5-kcmutils-devel
 BuildRequires:	kf5-kcompletion-devel
@@ -39,6 +40,7 @@ BuildRequires:	kf5-kwidgetsaddons-devel
 BuildRequires:	kf5-kwindowsystem-devel
 BuildRequires:	kf5-kxmlgui-devel
 BuildRequires:	kf5-plasma-framework-devel
+BuildRequires:	kp5-kscreenlocker-devel
 BuildRequires:	kp5-kwayland-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libepoxy-devel
@@ -73,7 +75,7 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
-%patch0 -p1
+#%%patch0 -p1
 
 %build
 install -d build
@@ -111,11 +113,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libkwin4_effect_builtins.so.1
 %attr(755,root,root) %{_libdir}/libkwin4_effect_builtins.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwineffects.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwineffects.so.6
+%attr(755,root,root) %ghost %{_libdir}/libkwineffects.so.7
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwinglutils.so.6
+%attr(755,root,root) %ghost %{_libdir}/libkwinglutils.so.7
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwinxrenderutils.so.6
+%attr(755,root,root) %ghost %{_libdir}/libkwinxrenderutils.so.7
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwin_scripts.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindecoration.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindesktop.so
@@ -123,6 +125,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinrules.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinscreenedges.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintabbox.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeKWinWaylandPrivatePlugin.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandVirtualBackend.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/platforms/KWinQpaPlugin.so
 %dir %{_libdir}/qt5/plugins/kwin
 %dir %{_libdir}/qt5/plugins/kwin/effects
 %dir %{_libdir}/qt5/plugins/kwin/effects/configs
@@ -131,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_coverswitch_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_cube_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_cubeslide_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_dashboard_config.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_dashboard_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_desktopgrid_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_diminactive_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_flipswitch_config.so
