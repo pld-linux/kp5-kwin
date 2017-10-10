@@ -1,24 +1,27 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.5.4
+%define		kdeplasmaver	5.11.0
 %define		qtver		5.5.1
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.5.4
+Version:	5.11.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	d719b7258a5fa9bf2dae770a20fa4e2d
+# Source0-md5:	98e5ba4c6390cfed51cad150c62a1c55
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
 BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5PlatformSupport-devel >= %{qtver}
+BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qtver}
+BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qtver}
+#BuildRequires:	Qt5PlatformSupport-devel >= %{qtver}
+BuildRequires:	Qt5ThemeSupport-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	kf5-kcmutils-devel
 BuildRequires:	kf5-kcompletion-devel
@@ -36,12 +39,13 @@ BuildRequires:	kf5-knewstuff-devel
 BuildRequires:	kf5-knotifications-devel
 BuildRequires:	kf5-kpackage-devel
 BuildRequires:	kf5-kservice-devel
+BuildRequires:	kf5-kwayland-devel
 BuildRequires:	kf5-kwidgetsaddons-devel
 BuildRequires:	kf5-kwindowsystem-devel
 BuildRequires:	kf5-kxmlgui-devel
 BuildRequires:	kf5-plasma-framework-devel
+BuildRequires:	kp5-kdecoration-devel
 BuildRequires:	kp5-kscreenlocker-devel
-BuildRequires:	kp5-kwayland-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libepoxy-devel
 BuildRequires:	libinput-devel
@@ -113,11 +117,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libkwin4_effect_builtins.so.1
 %attr(755,root,root) %{_libdir}/libkwin4_effect_builtins.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwineffects.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwineffects.so.7
+#%%attr(755,root,root) %ghost %{_libdir}/libkwineffects.so.7
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwinglutils.so.7
+#%%attr(755,root,root) %ghost %{_libdir}/libkwinglutils.so.7
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwinxrenderutils.so.7
+#%%attr(755,root,root) %ghost %{_libdir}/libkwinxrenderutils.so.7
+%attr(755,root,root) %{_libdir}/libkwineffects.so.11
+%attr(755,root,root) %{_libdir}/libkwinglutils.so.11
+%attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.11
+
+%{_libdir}/org_kde_kwin_xclipboard_syncer
+%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintouchscreen.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_aurorae.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_decoration.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_scripts.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_windowswitcher.so
+%dir %{_libdir}/qt5/plugins/org.kde.kwin.platforms
+%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so
+
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwin_scripts.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindecoration.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindesktop.so
