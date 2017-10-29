@@ -1,18 +1,18 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.11.0
+%define		kdeplasmaver	5.11.2
 %define		qtver		5.5.1
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.11.0
+Version:	5.11.2
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	98e5ba4c6390cfed51cad150c62a1c55
+# Source0-md5:	e5e84f2a5d1cecb2c5275bdd88ef03e0
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
@@ -180,6 +180,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandFbdevBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandWaylandBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandX11Backend.so
+%dir %{_libdir}/qt5/plugins/org.kde.kwin.scenes
+%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneQPainter.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneXRender.so
 /etc/xdg/aurorae.knsrc
 /etc/xdg/kwineffect.knsrc
 /etc/xdg/kwinscripts.knsrc
