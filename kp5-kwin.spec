@@ -1,18 +1,18 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.11.2
+%define		kdeplasmaver	5.14.4
 %define		qtver		5.5.1
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.11.2
+Version:	5.14.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	e5e84f2a5d1cecb2c5275bdd88ef03e0
+# Source0-md5:	3d9ce77dd5671b514d9943c5119fca61
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
@@ -108,8 +108,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kwin_wayland
 %attr(755,root,root) %{_bindir}/kwin_x11
 %attr(755,root,root) %{_libdir}/kconf_update_bin/kwin5_update_default_rules
-%attr(755,root,root) %{_libdir}/kwin_killer_helper
-%attr(755,root,root) %{_libdir}/kwin_rules_dialog
+#%%attr(755,root,root) %{_libdir}/kwin_killer_helper
+#%%attr(755,root,root) %{_libdir}/kwin_rules_dialog
 %attr(755,root,root) %{_libdir}/libkdeinit5_kwin_rules_dialog.so
 %attr(755,root,root) %{_libdir}/libkdeinit5_kwin_x11.so
 %attr(755,root,root) %ghost %{_libdir}/libkwin.so.5
@@ -126,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.11
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.11
 
-%{_libdir}/org_kde_kwin_xclipboard_syncer
+#%%{_libdir}/org_kde_kwin_xclipboard_syncer
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintouchscreen.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_aurorae.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_decoration.so
