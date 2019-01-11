@@ -1,18 +1,18 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.14.4
-%define		qtver		5.5.1
+%define		kdeplasmaver	5.14.5
+%define		qtver		5.9.0
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.14.4
+Version:	5.14.5
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	3d9ce77dd5671b514d9943c5119fca61
+# Source0-md5:	996d3477d0016e999d6d517ec072e983
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
@@ -202,6 +202,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservicetypes5/kwin*.desktop
 %{_datadir}/kwin
 %{_datadir}/kwincompositing
+%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_scale_config.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_slide_config.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneOpenGL.so
+%attr(755,root,root) %{_prefix}/libexec/kwin_killer_helper
+%attr(755,root,root) %{_prefix}/libexec/kwin_rules_dialog
+%attr(755,root,root) %{_prefix}/libexec/org_kde_kwin_xclipboard_syncer
+%{_datadir}/config.kcfg/kwin_colorcorrect.kcfg
+%{_datadir}/dbus-1/interfaces/org.kde.kwin.ColorCorrect.xml
+%{_datadir}/kconf_update/kwin.upd
 
 %files devel
 %defattr(644,root,root,755)
