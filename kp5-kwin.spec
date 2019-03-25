@@ -1,18 +1,18 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.14.5
+%define		kdeplasmaver	5.15.3
 %define		qtver		5.9.0
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.14.5
+Version:	5.15.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	996d3477d0016e999d6d517ec072e983
+# Source0-md5:	2dd5ecd4ecb32be77178d8ac660b94fe
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
@@ -50,6 +50,7 @@ BuildRequires:	libdrm-devel
 BuildRequires:	libepoxy-devel
 BuildRequires:	libinput-devel
 BuildRequires:	libxcb-devel
+BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	udev-devel
 BuildRequires:	wayland-devel
@@ -83,17 +84,17 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %build
 install -d build
+rm -rf po/id
+
 cd build
-%cmake \
+%cmake -G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	../
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} -C build/ install \
-        DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kpname} --all-name --with-kde
 
@@ -122,9 +123,9 @@ rm -rf $RPM_BUILD_ROOT
 #%%attr(755,root,root) %ghost %{_libdir}/libkwinglutils.so.7
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.*.*.*
 #%%attr(755,root,root) %ghost %{_libdir}/libkwinxrenderutils.so.7
-%attr(755,root,root) %{_libdir}/libkwineffects.so.11
-%attr(755,root,root) %{_libdir}/libkwinglutils.so.11
-%attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.11
+%attr(755,root,root) %{_libdir}/libkwineffects.so.12
+%attr(755,root,root) %{_libdir}/libkwinglutils.so.12
+%attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.12
 
 #%%{_libdir}/org_kde_kwin_xclipboard_syncer
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintouchscreen.so
@@ -137,7 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwin_scripts.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindecoration.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindesktop.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwindesktop.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinoptions.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinrules.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinscreenedges.so
@@ -197,12 +198,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/scalable/apps/kwin.svgz
 %{_datadir}/knotifications5/kwin.notifyrc
 %{_datadir}/kservices5/*kwin*.desktop
-%{_datadir}/kservices5/desktop.desktop
+#%%{_datadir}/kservices5/desktop.desktop
 %{_datadir}/kservices5/kwin
 %{_datadir}/kservicetypes5/kwin*.desktop
 %{_datadir}/kwin
 %{_datadir}/kwincompositing
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_scale_config.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_scale_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_slide_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneOpenGL.so
 %attr(755,root,root) %{_prefix}/libexec/kwin_killer_helper
@@ -211,6 +212,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kwin_colorcorrect.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.kwin.ColorCorrect.xml
 %{_datadir}/kconf_update/kwin.upd
+%attr(755,root,root) %ghost %{_libdir}/libkcmkwincommon.so.5
+%attr(755,root,root) %{_libdir}/libkcmkwincommon.so.5.15.3
+%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwin_virtualdesktops.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_effect.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_showpaint_config.so
+%{_datadir}/dbus-1/interfaces/org.kde.KWin.VirtualDesktopManager.xml
+%dir %{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops
+%dir %{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops/contents
+%dir %{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops/contents/ui
+%{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops/contents/ui/main.qml
+%{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops/metadata.desktop
+%{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops/metadata.json
 
 %files devel
 %defattr(644,root,root,755)
