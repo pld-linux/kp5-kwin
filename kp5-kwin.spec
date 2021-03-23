@@ -1,18 +1,18 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.21.2
+%define		kdeplasmaver	5.21.3
 %define		qtver		5.9.0
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.21.2
+Version:	5.21.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	e18502c414487da18f736e12e051bfaa
+# Source0-md5:	3c6e49f7a6954df1475087bf583d9c4c
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
@@ -192,7 +192,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kwin_colorcorrect.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.kwin.ColorCorrect.xml
 %{_datadir}/kconf_update/kwin.upd
-%attr(755,root,root) %ghost %{_libdir}/libkcmkwincommon.so.5
+%ghost %{_libdir}/libkcmkwincommon.so.5
 %attr(755,root,root) %{_libdir}/libkcmkwincommon.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwin_virtualdesktops.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_effect.so
@@ -234,9 +234,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_bindir}/kwin_wayland_wrapper
 %{systemduserunitdir}/plasma-kwin_x11.service
-%attr(755,root,root) %ghost %{_libdir}/libkwineffects.so.13
-%attr(755,root,root) %ghost %{_libdir}/libkwinglutils.so.13
-%attr(755,root,root) %ghost %{_libdir}/libkwinxrenderutils.so.13
+%ghost %{_libdir}/libkwineffects.so.13
+%ghost %{_libdir}/libkwinglutils.so.13
+%ghost %{_libdir}/libkwinxrenderutils.so.13
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwinrules.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/plugins/colordintegration.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/plugins/krunnerintegration.so
@@ -267,9 +267,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/kwin*.h
-%attr(755,root,root) %{_libdir}/libkwin4_effect_builtins.so
-%attr(755,root,root) %{_libdir}/libkwineffects.so
-%attr(755,root,root) %{_libdir}/libkwinglutils.so
-%attr(755,root,root) %{_libdir}/libkwinxrenderutils.so
+%{_libdir}/libkwin4_effect_builtins.so
+%{_libdir}/libkwineffects.so
+%{_libdir}/libkwinglutils.so
+%{_libdir}/libkwinxrenderutils.so
 %{_libdir}/cmake/KWinDBusInterface
 %{_libdir}/cmake/KWinEffects
