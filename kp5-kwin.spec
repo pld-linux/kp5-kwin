@@ -1,18 +1,18 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.21.3
+%define		kdeplasmaver	5.21.4
 %define		qtver		5.9.0
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Name:		kp5-%{kpname}
-Version:	5.21.3
+Version:	5.21.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	3c6e49f7a6954df1475087bf583d9c4c
+# Source0-md5:	567125d22d83ad952885e400e58922a1
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	Mesa-libEGL-devel
@@ -115,9 +115,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kwin_wayland
 %attr(755,root,root) %{_bindir}/kwin_x11
 %attr(755,root,root) %{_libdir}/kconf_update_bin/kwin5_update_default_rules
-%attr(755,root,root) %ghost %{_libdir}/libkwin.so.5
+%ghost %{_libdir}/libkwin.so.5
 %attr(755,root,root) %{_libdir}/libkwin.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkwin4_effect_builtins.so.1
+%ghost %{_libdir}/libkwin4_effect_builtins.so.1
 %attr(755,root,root) %{_libdir}/libkwin4_effect_builtins.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwineffects.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.*.*.*
