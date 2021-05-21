@@ -6,6 +6,7 @@
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
+Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
 Version:	5.21.5
 Release:	1
@@ -66,6 +67,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 KDE Window manager.
+
+%description -l pl.UTF-8
+Zarządca okien KDE.
 
 %package devel
 Summary:	Header files for %{kpname} development
