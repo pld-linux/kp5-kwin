@@ -21,6 +21,7 @@ BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qtver}
 BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= %{qtver}
 #BuildRequires:	Qt5PlatformSupport-devel >= %{qtver}
 BuildRequires:	Qt5ThemeSupport-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -51,6 +52,7 @@ BuildRequires:	kp5-kwayland-server-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libepoxy-devel
 BuildRequires:	libinput-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	libxcb-devel
 BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
@@ -76,6 +78,14 @@ Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	Qt5Core-devel >= %{qtver}
+Requires:	Qt5Gui-devel >= %{qtver}
+Requires:	kf5-kconfig-devel
+Requires:	kf5-kcoreaddons-devel
+Requires:	kf5-kwindowsystem-devel
+Requires:	libepoxy-devel
+Requires:	libstdc++-devel
+Requires:	libxcb-devel
 
 %description devel
 Header files for %{kpname} development.
