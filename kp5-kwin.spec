@@ -2,7 +2,8 @@
 # - libhybris
 #
 %define		kdeplasmaver	5.21.5
-%define		qtver		5.9.0
+%define		kf_ver		5.78
+%define		qt_ver		5.15.0
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
@@ -16,53 +17,118 @@ Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{versi
 # Source0-md5:	537f40058190d829041cce3bf8b77928
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
-BuildRequires:	Mesa-libEGL-devel
+BuildRequires:	EGL-devel
+BuildRequires:	OpenGL-devel
 BuildRequires:	Mesa-libgbm-devel
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qtver}
-BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qtver}
-BuildRequires:	Qt5Gui-devel >= %{qtver}
-#BuildRequires:	Qt5PlatformSupport-devel >= %{qtver}
-BuildRequires:	Qt5ThemeSupport-devel >= %{qtver}
-BuildRequires:	cmake >= 2.8.12
-BuildRequires:	kf5-kcmutils-devel
-BuildRequires:	kf5-kcompletion-devel
-BuildRequires:	kf5-kconfig-devel
-BuildRequires:	kf5-kconfigwidgets-devel
-BuildRequires:	kf5-kcoreaddons-devel
-BuildRequires:	kf5-kcrash-devel
-BuildRequires:	kf5-kdeclarative-devel
-BuildRequires:	kf5-kglobalaccel-devel
-BuildRequires:	kf5-ki18n-devel
-BuildRequires:	kf5-kiconthemes-devel
-BuildRequires:	kf5-kinit-devel
-BuildRequires:	kf5-kio-devel
-BuildRequires:	kf5-knewstuff-devel
-BuildRequires:	kf5-knotifications-devel
-BuildRequires:	kf5-kpackage-devel
-BuildRequires:	kf5-kservice-devel
-BuildRequires:	kf5-kwayland-devel
-BuildRequires:	kf5-kwidgetsaddons-devel
-BuildRequires:	kf5-kwindowsystem-devel
-BuildRequires:	kf5-kxmlgui-devel
-BuildRequires:	kf5-plasma-framework-devel
-BuildRequires:	kp5-kdecoration-devel
+BuildRequires:	Qt5Core-devel >= %{qt_ver}
+BuildRequires:	Qt5DBus-devel >= %{qt_ver}
+BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qt_ver}
+BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qt_ver}
+BuildRequires:	Qt5Gui-devel >= %{qt_ver}
+BuildRequires:	Qt5Network-devel >= %{qt_ver}
+BuildRequires:	Qt5Qml-devel >= %{qt_ver}
+BuildRequires:	Qt5Quick-devel >= %{qt_ver}
+#BuildRequires:	Qt5PlatformSupport-devel >= %{qt_ver}
+BuildRequires:	Qt5Script-devel >= %{qt_ver}
+BuildRequires:	Qt5ThemeSupport-devel >= %{qt_ver}
+BuildRequires:	Qt5Widgets-devel >= %{qt_ver}
+BuildRequires:	Qt5X11Extras-devel >= %{qt_ver}
+BuildRequires:	cmake >= 3.1
+BuildRequires:	fontconfig-devel
+BuildRequires:	freetype-devel >= 2
+BuildRequires:	kf5-extra-cmake-modules >= 5.38
+BuildRequires:	kf5-kactivities-devel >= %{kf_ver}
+BuildRequires:	kf5-kcmutils-devel >= %{kf_ver}
+BuildRequires:	kf5-kcompletion-devel >= %{kf_ver}
+BuildRequires:	kf5-kconfig-devel >= %{kf_ver}
+BuildRequires:	kf5-kconfigwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kcrash-devel >= %{kf_ver}
+BuildRequires:	kf5-kdeclarative-devel >= %{kf_ver}
+BuildRequires:	kf5-kdoctools-devel >= %{kf_ver}
+BuildRequires:	kf5-kglobalaccel-devel >= %{kf_ver}
+BuildRequires:	kf5-ki18n-devel >= %{kf_ver}
+BuildRequires:	kf5-kiconthemes-devel >= %{kf_ver}
+BuildRequires:	kf5-kidletime-devel >= %{kf_ver}
+BuildRequires:	kf5-kirigami2-devel >= %{kf_ver}
+BuildRequires:	kf5-kio-devel >= %{kf_ver}
+BuildRequires:	kf5-knewstuff-devel >= %{kf_ver}
+BuildRequires:	kf5-knotifications-devel >= %{kf_ver}
+BuildRequires:	kf5-kpackage-devel >= %{kf_ver}
+BuildRequires:	kf5-krunner-devel >= %{kf_ver}
+BuildRequires:	kf5-kservice-devel >= %{kf_ver}
+BuildRequires:	kf5-ktextwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-kwayland-devel >= %{kf_ver}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kf_ver}
+BuildRequires:	kf5-kxmlgui-devel >= %{kf_ver}
+BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
+BuildRequires:	kp5-breeze-devel >= 5.9.0
+BuildRequires:	kp5-kdecoration-devel >= 5.18.0
 BuildRequires:	kp5-kscreenlocker-devel
 BuildRequires:	kp5-kwayland-server-devel
-BuildRequires:	libdrm-devel
+BuildRequires:	lcms2-devel
+BuildRequires:	libcap-devel
+BuildRequires:	libdrm-devel >= 2.4.62
 BuildRequires:	libepoxy-devel
-BuildRequires:	libinput-devel
+BuildRequires:	libinput-devel >= 1.9
 BuildRequires:	libstdc++-devel
-BuildRequires:	libxcb-devel
+BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	ninja
+BuildRequires:	pipewire-devel >= 0.3
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	udev-devel
-BuildRequires:	wayland-devel
+BuildRequires:	wayland-devel >= 1.2
+BuildRequires:	wayland-egl-devel
 BuildRequires:	xcb-util-cursor-devel
 BuildRequires:	xcb-util-image-devel
 BuildRequires:	xcb-util-keysyms-devel
-BuildRequires:	xcb-util-wm-devel
+BuildRequires:	xcb-util-wm-devel >= 0.4
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXi-devel
+BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.7.0
 BuildRequires:	xz
+Requires:	Qt5Core >= %{qt_ver}
+Requires:	Qt5DBus >= %{qt_ver}
+Requires:	Qt5Gui >= %{qt_ver}
+Requires:	Qt5Network >= %{qt_ver}
+Requires:	Qt5Qml >= %{qt_ver}
+Requires:	Qt5Quick >= %{qt_ver}
+Requires:	Qt5Script >= %{qt_ver}
+Requires:	Qt5Widgets >= %{qt_ver}
+Requires:	Qt5X11Extras >= %{qt_ver}
+Requires:	kf5-kactivities >= %{kf_ver}
+Requires:	kf5-kcmutils >= %{kf_ver}
+Requires:	kf5-kcompletion >= %{kf_ver}
+Requires:	kf5-kconfig >= %{kf_ver}
+Requires:	kf5-kconfigwidgets >= %{kf_ver}
+Requires:	kf5-kcoreaddons >= %{kf_ver}
+Requires:	kf5-kcrash >= %{kf_ver}
+Requires:	kf5-kdeclarative >= %{kf_ver}
+Requires:	kf5-kglobalaccel >= %{kf_ver}
+Requires:	kf5-ki18n >= %{kf_ver}
+Requires:	kf5-kidletime >= %{kf_ver}
+Requires:	kf5-kio >= %{kf_ver}
+Requires:	kf5-knewstuff >= %{kf_ver}
+Requires:	kf5-knotifications >= %{kf_ver}
+Requires:	kf5-kpackage >= %{kf_ver}
+Requires:	kf5-kservice >= %{kf_ver}
+Requires:	kf5-ktextwidgets >= %{kf_ver}
+Requires:	kf5-kwayland >= %{kf_ver}
+Requires:	kf5-kwidgetsaddons >= %{kf_ver}
+Requires:	kf5-kwindowsystem >= %{kf_ver}
+Requires:	kf5-kxmlgui >= %{kf_ver}
+Requires:	kf5-plasma-framework >= %{kf_ver}
+Requires:	kp5-kdecoration >= 5.18.0
+Requires:	kp5-kscreenlocker
+Requires:	kp5-kwayland-server
+Requires:	libdrm >= 2.4.62
+Requires:	libinput >= 1.9
+Requires:	libxcb >= 1.10
+Requires:	xcb-util-wm >= 0.4
+Requires:	xorg-lib-libxkbcommon >= 0.7.0
+Suggests:	hwdata
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt5dir		%{_libdir}/qt5
@@ -78,11 +144,11 @@ Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	Qt5Core-devel >= %{qtver}
-Requires:	Qt5Gui-devel >= %{qtver}
-Requires:	kf5-kconfig-devel
-Requires:	kf5-kcoreaddons-devel
-Requires:	kf5-kwindowsystem-devel
+Requires:	Qt5Core-devel >= %{qt_ver}
+Requires:	Qt5Gui-devel >= %{qt_ver}
+Requires:	kf5-kconfig-devel >= %{kf_ver}
+Requires:	kf5-kcoreaddons-devel >= %{kf_ver}
+Requires:	kf5-kwindowsystem-devel >= %{kf_ver}
 Requires:	libepoxy-devel
 Requires:	libstdc++-devel
 Requires:	libxcb-devel
