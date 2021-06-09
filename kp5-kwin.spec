@@ -1,7 +1,7 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.21.5
+%define		kdeplasmaver	5.22.0
 %define		kf_ver		5.78
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -9,26 +9,26 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.21.5
+Version:	5.22.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	537f40058190d829041cce3bf8b77928
+# Source0-md5:	36e0a3eaa859abd1840fad21a63096c4
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
-BuildRequires:	OpenGL-devel
 BuildRequires:	Mesa-libgbm-devel
+BuildRequires:	OpenGL-devel
 BuildRequires:	Qt5Core-devel >= %{qt_ver}
 BuildRequires:	Qt5DBus-devel >= %{qt_ver}
 BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Gui-devel >= %{qt_ver}
 BuildRequires:	Qt5Network-devel >= %{qt_ver}
+#BuildRequires:	Qt5PlatformSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Qml-devel >= %{qt_ver}
 BuildRequires:	Qt5Quick-devel >= %{qt_ver}
-#BuildRequires:	Qt5PlatformSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Script-devel >= %{qt_ver}
 BuildRequires:	Qt5ThemeSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Widgets-devel >= %{qt_ver}
@@ -50,8 +50,8 @@ BuildRequires:	kf5-kglobalaccel-devel >= %{kf_ver}
 BuildRequires:	kf5-ki18n-devel >= %{kf_ver}
 BuildRequires:	kf5-kiconthemes-devel >= %{kf_ver}
 BuildRequires:	kf5-kidletime-devel >= %{kf_ver}
-BuildRequires:	kf5-kirigami2-devel >= %{kf_ver}
 BuildRequires:	kf5-kio-devel >= %{kf_ver}
+BuildRequires:	kf5-kirigami2-devel >= %{kf_ver}
 BuildRequires:	kf5-knewstuff-devel >= %{kf_ver}
 BuildRequires:	kf5-knotifications-devel >= %{kf_ver}
 BuildRequires:	kf5-kpackage-devel >= %{kf_ver}
@@ -66,7 +66,7 @@ BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
 BuildRequires:	kp5-breeze-devel >= 5.9.0
 BuildRequires:	kp5-kdecoration-devel >= 5.18.0
 BuildRequires:	kp5-kscreenlocker-devel
-BuildRequires:	kp5-kwayland-server-devel
+BuildRequires:	kp5-kwayland-server-devel >= 5.22.0
 BuildRequires:	lcms2-devel
 BuildRequires:	libcap-devel
 BuildRequires:	libdrm-devel >= 2.4.62
@@ -343,6 +343,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/krunner
 %dir %{_datadir}/krunner/dbusplugins
 %{_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
+%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_virtualkeyboard.so
+%attr(755,root,root) %{_prefix}/libexec/kwin-applywindowdecoration
+%{_datadir}/dbus-1/interfaces/org.kde.kwin.VirtualKeyboard.xml
+%{_datadir}/kpackage/kcms/kcm_virtualkeyboard/contents/ui/main.qml
+%{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.desktop
+%{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.json
+%{_datadir}/kservices5/kcm_virtualkeyboard.desktop
 
 %files devel
 %defattr(644,root,root,755)
