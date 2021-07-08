@@ -10,7 +10,7 @@ Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
 Version:	5.22.3
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -346,6 +346,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_virtualkeyboard.so
 %attr(755,root,root) %{_prefix}/libexec/kwin-applywindowdecoration
 %{_datadir}/dbus-1/interfaces/org.kde.kwin.VirtualKeyboard.xml
+%dir %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/contents/ui
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/contents/ui/main.qml
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.json
