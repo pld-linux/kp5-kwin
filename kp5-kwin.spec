@@ -1,7 +1,7 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.22.5
+%define		kdeplasmaver	5.23.0
 %define		kf_ver		5.78
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -9,12 +9,12 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.22.5
+Version:	5.23.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6a11573eb58a4a78dc2ba83f83639202
+# Source0-md5:	ad9812a790a6765eb7bff1a9a4946d2d
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
@@ -63,10 +63,10 @@ BuildRequires:	kf5-kwidgetsaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kwindowsystem-devel >= %{kf_ver}
 BuildRequires:	kf5-kxmlgui-devel >= %{kf_ver}
 BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
-BuildRequires:	kp5-breeze-devel >= 5.9.0
-BuildRequires:	kp5-kdecoration-devel >= 5.18.0
+BuildRequires:	kp5-breeze-devel >= 5.23.0
+BuildRequires:	kp5-kdecoration-devel >= 5.23.0
 BuildRequires:	kp5-kscreenlocker-devel
-BuildRequires:	kp5-kwayland-server-devel >= 5.22.0
+BuildRequires:	kp5-kwayland-server-devel >= 5.23.0
 BuildRequires:	lcms2-devel
 BuildRequires:	libcap-devel
 BuildRequires:	libdrm-devel >= 2.4.62
@@ -204,10 +204,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.*.*.*
 
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintouchscreen.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_aurorae.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_decoration.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_scripts.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_windowswitcher.so
 %dir %{_libdir}/qt5/plugins/org.kde.kwin.platforms
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so
 
@@ -222,12 +218,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/plugins/kwin/plugins
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kcm_kwin4_genericscripted.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_blur_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_coverswitch_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_cube_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_cubeslide_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_desktopgrid_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_diminactive_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_flipswitch_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_glide_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_invert_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_lookingglass_config.so
@@ -252,7 +244,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandX11Backend.so
 %dir %{_libdir}/qt5/plugins/org.kde.kwin.scenes
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneQPainter.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneXRender.so
 %{_libdir}/qt5/qml/org/kde/kwin
 %{_datadir}/config.kcfg/kwin.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.KWin.xml
@@ -275,7 +266,6 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libkcmkwincommon.so.5
 %attr(755,root,root) %{_libdir}/libkcmkwincommon.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwin_virtualdesktops.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_packagestructure_effect.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_showpaint_config.so
 %{_datadir}/dbus-1/interfaces/org.kde.KWin.VirtualDesktopManager.xml
 %dir %{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops
@@ -353,6 +343,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.json
 %{_datadir}/kservices5/kcm_virtualkeyboard.desktop
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_effect.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_script.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_windowswitcher.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_overview_config.so
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-disable-translucency-effect.sh
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-remove-cover-switch.py
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-remove-cubeslide.py
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-remove-flip-switch.py
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-remove-xrender-backend.py
+%attr(755,root,root) %{_datadir}/kconf_update/kwinrules-5.23-virtual-desktop-ids.py
 
 %files devel
 %defattr(644,root,root,755)
