@@ -1,7 +1,7 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.23.3
+%define		kdeplasmaver	5.23.4
 %define		kf_ver		5.78
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -9,12 +9,12 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.23.3
+Version:	5.23.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	e853babb7959399cc8254b43de37d2d2
+# Source0-md5:	7c4641bdb19b8ff3ebf785d9e62c4e73
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
