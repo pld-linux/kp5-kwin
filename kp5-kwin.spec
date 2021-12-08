@@ -25,9 +25,11 @@ BuildRequires:	Qt5DBus-devel >= %{qt_ver}
 BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Gui-devel >= %{qt_ver}
+BuildRequires:	Qt5Multimedia-devel >= %{qt_ver}
 BuildRequires:	Qt5Network-devel >= %{qt_ver}
 #BuildRequires:	Qt5PlatformSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Qml-devel >= %{qt_ver}
+BuildRequires:	Qt5Quick-controls >= %{qt_ver}
 BuildRequires:	Qt5Quick-devel >= %{qt_ver}
 BuildRequires:	Qt5Script-devel >= %{qt_ver}
 BuildRequires:	Qt5ThemeSupport-devel >= %{qt_ver}
@@ -37,6 +39,7 @@ BuildRequires:	Qt5X11Extras-devel >= %{qt_ver}
 BuildRequires:	cmake >= 3.1
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2
+BuildRequires:	hwdata
 BuildRequires:	kf5-extra-cmake-modules >= 5.38
 BuildRequires:	kf5-kactivities-devel >= %{kf_ver}
 BuildRequires:	kf5-kcmutils-devel >= %{kf_ver}
@@ -69,6 +72,7 @@ BuildRequires:	kp5-kdecoration-devel >= 5.23.0
 BuildRequires:	kp5-kscreenlocker-devel
 BuildRequires:	kp5-kwayland-server-devel >= 5.23.0
 BuildRequires:	lcms2-devel
+BuildRequires:	libcap
 BuildRequires:	libcap-devel
 BuildRequires:	libdrm-devel >= 2.4.62
 BuildRequires:	libepoxy-devel
@@ -89,6 +93,7 @@ BuildRequires:	xcb-util-wm-devel >= 0.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.7.0
+BuildRequires:	xorg-xserver-Xwayland-devel
 BuildRequires:	xz
 Requires:	Qt5Core >= %{qt_ver}
 Requires:	Qt5DBus >= %{qt_ver}
@@ -124,6 +129,7 @@ Requires:	kf5-plasma-framework >= %{kf_ver}
 Requires:	kp5-kdecoration >= 5.18.0
 Requires:	kp5-kscreenlocker
 Requires:	kp5-kwayland-server
+Requires:	libcap
 Requires:	libdrm >= 2.4.62
 Requires:	libinput >= 1.9
 Requires:	libxcb >= 1.10
