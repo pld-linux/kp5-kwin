@@ -10,7 +10,7 @@ Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
 Version:	5.23.4
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -31,6 +31,7 @@ BuildRequires:	Qt5Qml-devel >= %{qt_ver}
 BuildRequires:	Qt5Quick-devel >= %{qt_ver}
 BuildRequires:	Qt5Script-devel >= %{qt_ver}
 BuildRequires:	Qt5ThemeSupport-devel >= %{qt_ver}
+BuildRequires:	Qt5UiTools-devel >= %{qt_ver}
 BuildRequires:	Qt5Widgets-devel >= %{qt_ver}
 BuildRequires:	Qt5X11Extras-devel >= %{qt_ver}
 BuildRequires:	cmake >= 3.1
