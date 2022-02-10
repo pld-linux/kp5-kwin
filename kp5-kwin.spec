@@ -1,7 +1,7 @@
 # TODO:
 # - libhybris
 #
-%define		kdeplasmaver	5.23.5
+%define		kdeplasmaver	5.24.0
 %define		kf_ver		5.78
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -9,12 +9,12 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.23.5
+Version:	5.24.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	89d902c7fd1d9d37666f58975383a857
+# Source0-md5:	a401b80ab133740bb9c006cdf0eaedbf
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
@@ -70,7 +70,7 @@ BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
 BuildRequires:	kp5-breeze-devel >= 5.23.0
 BuildRequires:	kp5-kdecoration-devel >= 5.23.0
 BuildRequires:	kp5-kscreenlocker-devel
-BuildRequires:	kp5-kwayland-server-devel >= 5.23.0
+BuildRequires:	kp5-kwayland-server-devel >= 5.24.0
 BuildRequires:	lcms2-devel
 BuildRequires:	libcap
 BuildRequires:	libcap-devel
@@ -204,8 +204,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kconf_update_bin/kwin5_update_default_rules
 %ghost %{_libdir}/libkwin.so.5
 %attr(755,root,root) %{_libdir}/libkwin.so.*.*.*
-%ghost %{_libdir}/libkwin4_effect_builtins.so.1
-%attr(755,root,root) %{_libdir}/libkwin4_effect_builtins.so.*.*.*
+
 %attr(755,root,root) %{_libdir}/libkwineffects.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.*.*.*
@@ -235,11 +234,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_mouseclick_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_mousemark_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_presentwindows_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_resize_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_showfps_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_thumbnailaside_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_trackmouse_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_windowgeometry_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_wobblywindows_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_zoom_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwincompositing.so
@@ -249,8 +246,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandFbdevBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandWaylandBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandX11Backend.so
-%dir %{_libdir}/qt5/plugins/org.kde.kwin.scenes
-%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneQPainter.so
 %{_libdir}/qt5/qml/org/kde/kwin
 %{_datadir}/config.kcfg/kwin.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.KWin.xml
@@ -264,7 +259,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservicetypes5/kwin*.desktop
 %{_datadir}/kwin
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_slide_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.scenes/KWinSceneOpenGL.so
 %attr(755,root,root) %{_prefix}/libexec/kwin_killer_helper
 %attr(755,root,root) %{_prefix}/libexec/kwin_rules_dialog
 %{_datadir}/config.kcfg/kwin_colorcorrect.kcfg
@@ -362,11 +356,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-remove-flip-switch.py
 %attr(755,root,root) %{_datadir}/kconf_update/kwin-5.23-remove-xrender-backend.py
 %attr(755,root,root) %{_datadir}/kconf_update/kwinrules-5.23-virtual-desktop-ids.py
+%{systemduserunitdir}/plasma-kwin_wayland.service
+%{_desktopdir}/org.kde.kwin_rules_dialog.desktop
+%{_datadir}/dbus-1/interfaces/org.kde.KWin.TabletModeManager.xml
+%{_datadir}/dbus-1/interfaces/org.kde.kwin.InputDevice.xml
 
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/kwin*.h
-%{_libdir}/libkwin4_effect_builtins.so
 %{_libdir}/libkwineffects.so
 %{_libdir}/libkwinglutils.so
 %{_libdir}/libkwinxrenderutils.so
