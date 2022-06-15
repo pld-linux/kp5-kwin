@@ -96,6 +96,7 @@ BuildRequires:	xcb-util-keysyms-devel
 BuildRequires:	xcb-util-wm-devel >= 0.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
+BuildRequires:	xorg-lib-libxcvt-devel >= 0.1.1
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.7.0
 BuildRequires:	xorg-xserver-Xwayland-devel
 BuildRequires:	xz
