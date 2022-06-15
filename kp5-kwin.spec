@@ -4,7 +4,7 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.24.5
+%define		kdeplasmaver	5.25.0
 %define		kf_ver		5.78
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -12,12 +12,12 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.24.5
+Version:	5.25.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	a92ef62e3780435009e1d67623727d9e
+Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+# Source0-md5:	74dfc2138c43dc97963d558a72efd426
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
@@ -133,7 +133,6 @@ Requires:	kf5-kxmlgui >= %{kf_ver}
 Requires:	kf5-plasma-framework >= %{kf_ver}
 Requires:	kp5-kdecoration >= 5.18.0
 Requires:	kp5-kscreenlocker
-Requires:	kp5-kwayland-server
 Requires:	libcap
 Requires:	libdrm >= 2.4.62
 Requires:	libinput >= 1.9
@@ -219,14 +218,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwinxrenderutils.so.*.*.*
 
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintouchscreen.so
 %dir %{_libdir}/qt5/plugins/org.kde.kwin.platforms
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.platforms/KWinX11Platform.so
 
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwin_scripts.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinoptions.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwinscreenedges.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_kwintabbox.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandVirtualBackend.so
 %dir %{_libdir}/qt5/plugins/kwin
 %dir %{_libdir}/qt5/plugins/kwin/effects
@@ -243,17 +237,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_magnifier_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_mouseclick_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_mousemark_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_presentwindows_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_showfps_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_thumbnailaside_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_trackmouse_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_wobblywindows_config.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_zoom_config.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kwincompositing.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kdecoration2/kwin5_aurorae.so
 %dir %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandDrmBackend.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandFbdevBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandWaylandBackend.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/org.kde.kwin.waylandbackends/KWinWaylandX11Backend.so
 %{_libdir}/qt5/qml/org/kde/kwin
@@ -276,8 +267,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kconf_update/kwin.upd
 %ghost %{_libdir}/libkcmkwincommon.so.5
 %attr(755,root,root) %{_libdir}/libkcmkwincommon.so.5.*.*
-%dir %{_libdir}/qt5/plugins/kcms
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwin_virtualdesktops.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_showpaint_config.so
 %{_datadir}/dbus-1/interfaces/org.kde.KWin.VirtualDesktopManager.xml
 %dir %{_datadir}/kpackage/kcms/kcm_kwin_virtualdesktops
@@ -309,8 +298,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_kwindecoration/contents/ui/main.qml
 %{_datadir}/kpackage/kcms/kcm_kwindecoration/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_kwindecoration/metadata.json
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwin_effects.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwindecoration.so
 %attr(755,root,root) %{_datadir}/kconf_update/kwin-5.16-auto-bordersize.sh
 %{_datadir}/qlogging-categories5/org_kde_kwin.categories
 
@@ -319,7 +306,6 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libkwineffects.so.13
 %ghost %{_libdir}/libkwinglutils.so.13
 %ghost %{_libdir}/libkwinxrenderutils.so.13
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_kwinrules.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/plugins/colordintegration.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/plugins/krunnerintegration.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/plugins/libKWinNightColorPlugin.so
@@ -345,7 +331,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/krunner
 %dir %{_datadir}/krunner/dbusplugins
 %{_datadir}/krunner/dbusplugins/kwin-runner-windows.desktop
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_virtualkeyboard.so
 %attr(755,root,root) %{_prefix}/libexec/kwin-applywindowdecoration
 %{_datadir}/dbus-1/interfaces/org.kde.kwin.VirtualKeyboard.xml
 %dir %{_datadir}/kpackage/kcms/kcm_virtualkeyboard
@@ -354,7 +339,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/contents/ui/main.qml
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_virtualkeyboard/metadata.json
-%{_datadir}/kservices5/kcm_virtualkeyboard.desktop
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_aurorae.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_decoration.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/kwin_effect.so
@@ -371,6 +355,32 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/org.kde.kwin_rules_dialog.desktop
 %{_datadir}/dbus-1/interfaces/org.kde.KWin.TabletModeManager.xml
 %{_datadir}/dbus-1/interfaces/org.kde.kwin.InputDevice.xml
+%attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_windowview_config.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_effects.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_scripts.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_kwin_virtualdesktops.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_kwindecoration.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_kwinrules.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_virtualkeyboard.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwinoptions.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwinscreenedges.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwintabbox.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwintouchscreen.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kwincompositing.so
+%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/kwin.2/DesktopThumbnailItem.qml
+%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/kwin.2/qmldir
+%{_desktopdir}/kcm_kwin_effects.desktop
+%{_desktopdir}/kcm_kwin_scripts.desktop
+%{_desktopdir}/kcm_kwin_virtualdesktops.desktop
+%{_desktopdir}/kcm_kwindecoration.desktop
+%{_desktopdir}/kcm_kwinoptions.desktop
+%{_desktopdir}/kcm_kwinrules.desktop
+%{_desktopdir}/kcm_kwinscreenedges.desktop
+%{_desktopdir}/kcm_kwintouchscreen.desktop
+%{_desktopdir}/kcm_virtualkeyboard.desktop
+%{_desktopdir}/kwincompositing.desktop
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.25-effect-pluginid-config-group.py
+%{_datadir}/kpackage/kcms/kcm_kwin_scripts/contents/ui/main.qml
 
 %files devel
 %defattr(644,root,root,755)
