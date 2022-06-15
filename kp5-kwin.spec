@@ -75,7 +75,6 @@ BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
 BuildRequires:	kp5-breeze-devel >= 5.23.0
 BuildRequires:	kp5-kdecoration-devel >= 5.23.0
 BuildRequires:	kp5-kscreenlocker-devel
-BuildRequires:	kp5-kwayland-server-devel >= 5.24.0
 BuildRequires:	lcms2-devel
 BuildRequires:	libcap
 BuildRequires:	libcap-devel
