@@ -13,7 +13,7 @@ Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
 Version:	5.25.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -367,6 +367,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwintabbox.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_kwintouchscreen.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kwincompositing.so
+%dir %{_libdir}/qt5/qml/org/kde/kwin.2
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/kwin.2/DesktopThumbnailItem.qml
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/kwin.2/qmldir
 %{_desktopdir}/kcm_kwin_effects.desktop
@@ -380,6 +381,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kcm_virtualkeyboard.desktop
 %{_desktopdir}/kwincompositing.desktop
 %attr(755,root,root) %{_datadir}/kconf_update/kwin-5.25-effect-pluginid-config-group.py
+%dir %{_datadir}/kpackage/kcms/kcm_kwin_scripts
+%dir %{_datadir}/kpackage/kcms/kcm_kwin_scripts/contents
+%dir %{_datadir}/kpackage/kcms/kcm_kwin_scripts/contents/ui
 %{_datadir}/kpackage/kcms/kcm_kwin_scripts/contents/ui/main.qml
 
 %files devel
