@@ -4,20 +4,20 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.26.5
-%define		kf_ver		5.78
+%define		kdeplasmaver	5.27.0
+%define		kf_ver	5.102.0
 %define		qt_ver		5.15.0
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.26.5
+Version:	5.27.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6b2566e536949698fcb43ecb1cb331c8
+# Source0-md5:	b8ebd5971c2d4aee0a8a266ba8a78918
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
@@ -98,6 +98,7 @@ BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libxcvt-devel >= 0.1.1
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.7.0
+BuildRequires:	xorg-lib-libxkbcommon-x11-devel >= 0.7.0
 BuildRequires:	xorg-xserver-Xwayland-devel
 BuildRequires:	xz
 Requires:	Qt5Core >= %{qt_ver}
@@ -216,6 +217,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/libkwineffects.so.*.*.*
 %attr(755,root,root) %{_libdir}/libkwinglutils.so.*.*.*
+%{_libdir}/qt5/plugins/kwin/effects/configs/kwin_tileseditor_config.so
+%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_kwinxwayland.so
 
 %dir %{_libdir}/qt5/plugins/kwin
 %dir %{_libdir}/qt5/plugins/kwin/effects
@@ -244,13 +247,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/kwin.png
 %{_iconsdir}/hicolor/scalable/apps/kwin.svgz
 %{_datadir}/knotifications5/kwin.notifyrc
-%{_datadir}/kservices5/kwin
 %{_datadir}/kservicetypes5/kwin*.desktop
 %{_datadir}/kwin
 %attr(755,root,root) %{_libdir}/qt5/plugins/kwin/effects/configs/kwin_slide_config.so
 %attr(755,root,root) %{_prefix}/libexec/kwin_killer_helper
 %attr(755,root,root) %{_prefix}/libexec/kwin_rules_dialog
-%{_datadir}/config.kcfg/kwin_colorcorrect.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.kwin.ColorCorrect.xml
 %{_datadir}/kconf_update/kwin.upd
 %ghost %{_libdir}/libkcmkwincommon.so.5
@@ -362,6 +363,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kwin/plugins/MouseButtonToKeyPlugin.so
 %{_desktopdir}/kcm_kwintabbox.desktop
 %{_datadir}/kpackage/kcms/kcm_kwinrules/contents/ui/main.qml
+%{_desktopdir}/kcm_kwinxwayland.desktop
+%{_datadir}/config.kcfg/nightcolorsettings.kcfg
+%attr(755,root,root) %{_datadir}/kconf_update/kwin-5.27-replace-cascaded-zerocornered.sh
+%{_datadir}/kpackage/kcms/kcm_kwinxwayland/contents/ui/main.qml
 
 %files devel
 %defattr(644,root,root,755)
