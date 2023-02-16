@@ -13,7 +13,7 @@ Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
 Version:	5.27.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -366,6 +366,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kcm_kwinxwayland.desktop
 %{_datadir}/config.kcfg/nightcolorsettings.kcfg
 %attr(755,root,root) %{_datadir}/kconf_update/kwin-5.27-replace-cascaded-zerocornered.sh
+%dir %{_datadir}/kpackage/kcms/kcm_kwinxwayland
+%dir %{_datadir}/kpackage/kcms/kcm_kwinxwayland/contents
+%dir %{_datadir}/kpackage/kcms/kcm_kwinxwayland/contents/ui
 %{_datadir}/kpackage/kcms/kcm_kwinxwayland/contents/ui/main.qml
 
 %files devel
