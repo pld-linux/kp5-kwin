@@ -4,7 +4,7 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.5
+%define		kdeplasmaver	5.27.6
 %define		kf_ver	5.102.0
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -12,12 +12,12 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.27.5
-Release:	2
+Version:	5.27.6
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	9dcdcf269faee1e5370840f6e8b7eb7f
+# Source0-md5:	1f443301fdf0ee8f45a1fd93de08a792
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
