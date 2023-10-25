@@ -4,7 +4,7 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.8
+%define		kdeplasmaver	5.27.9
 %define		kf_ver	5.102.0
 %define		qt_ver		5.15.0
 %define		kpname		kwin
@@ -12,17 +12,18 @@
 Summary:	KDE Window manager
 Summary(pl.UTF-8):	Zarządca okien KDE
 Name:		kp5-%{kpname}
-Version:	5.27.8
+Version:	5.27.9
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	c08f67907365d26e5f08c65e395b3992
+# Source0-md5:	95717e3b21e3877e18670428eecaa70d
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
 BuildRequires:	Mesa-libgbm-devel
 BuildRequires:	OpenGL-devel
+BuildRequires:	Qt5AccessibilitySupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Core-devel >= %{qt_ver}
 BuildRequires:	Qt5DBus-devel >= %{qt_ver}
 BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qt_ver}
@@ -101,6 +102,7 @@ BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.7.0
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel >= 0.7.0
 BuildRequires:	xorg-xserver-Xwayland-devel
 BuildRequires:	xz
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	Qt5Core >= %{qt_ver}
 Requires:	Qt5DBus >= %{qt_ver}
 Requires:	Qt5Gui >= %{qt_ver}
@@ -140,7 +142,6 @@ Requires:	libinput >= 1.9
 Requires:	libxcb >= 1.10
 Requires:	xcb-util-wm >= 0.4
 Requires:	xorg-lib-libxkbcommon >= 0.7.0
-Requires:	%{name}-data = %{version}-%{release}
 Suggests:	hwdata
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
