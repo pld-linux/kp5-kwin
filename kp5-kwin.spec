@@ -5,8 +5,8 @@
 # Conditional build:
 %bcond_with	tests		# build with tests
 %define		kdeplasmaver	5.27.12
-%define		kf_ver	5.102.0
-%define		qt_ver		5.15.0
+%define		kf_ver		5.102.0
+%define		qt_ver		5.15.2
 %define		kpname		kwin
 #
 Summary:	KDE Window manager
@@ -21,9 +21,10 @@ Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{vers
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
 BuildRequires:	EGL-devel
-BuildRequires:	Mesa-libgbm-devel
+BuildRequires:	Mesa-libgbm-devel >= 21.3
 BuildRequires:	OpenGL-devel
 BuildRequires:	Qt5AccessibilitySupport-devel >= %{qt_ver}
+BuildRequires:	Qt5Concurrent-devel >= %{qt_ver}
 BuildRequires:	Qt5Core-devel >= %{qt_ver}
 BuildRequires:	Qt5DBus-devel >= %{qt_ver}
 BuildRequires:	Qt5EventDispatcherSupport-devel >= %{qt_ver}
@@ -31,23 +32,24 @@ BuildRequires:	Qt5FontDatabaseSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Gui-devel >= %{qt_ver}
 BuildRequires:	Qt5Multimedia-devel >= %{qt_ver}
 BuildRequires:	Qt5Network-devel >= %{qt_ver}
-#BuildRequires:	Qt5PlatformSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5Qml-devel >= %{qt_ver}
 BuildRequires:	Qt5Quick-controls >= %{qt_ver}
 BuildRequires:	Qt5Quick-devel >= %{qt_ver}
-BuildRequires:	Qt5Script-devel >= %{qt_ver}
 BuildRequires:	Qt5ServiceSupport-devel >= %{qt_ver}
+%{?with_tests:BuildRequires:	Qt5Test-devel >= %{qt_ver}}
 BuildRequires:	Qt5ThemeSupport-devel >= %{qt_ver}
 BuildRequires:	Qt5UiTools-devel >= %{qt_ver}
 BuildRequires:	Qt5Widgets-devel >= %{qt_ver}
 BuildRequires:	Qt5X11Extras-devel >= %{qt_ver}
+BuildRequires:	Qt5XkbCommonSupport-devel >= %{qt_ver}
 BuildRequires:	cmake >= 3.16.0
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fontconfig-devel
 BuildRequires:	freetype-devel >= 2
 BuildRequires:	hwdata
-BuildRequires:	kf5-extra-cmake-modules >= 5.38
+BuildRequires:	kf5-extra-cmake-modules >= %{kf_ver}
 BuildRequires:	kf5-kactivities-devel >= %{kf_ver}
+BuildRequires:	kf5-kauth-devel >= %{kf_ver}
 BuildRequires:	kf5-kcmutils-devel >= %{kf_ver}
 BuildRequires:	kf5-kcompletion-devel >= %{kf_ver}
 BuildRequires:	kf5-kconfig-devel >= %{kf_ver}
@@ -56,6 +58,7 @@ BuildRequires:	kf5-kcoreaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kcrash-devel >= %{kf_ver}
 BuildRequires:	kf5-kdeclarative-devel >= %{kf_ver}
 BuildRequires:	kf5-kdoctools-devel >= %{kf_ver}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kglobalaccel-devel >= %{kf_ver}
 BuildRequires:	kf5-ki18n-devel >= %{kf_ver}
 BuildRequires:	kf5-kiconthemes-devel >= %{kf_ver}
@@ -74,23 +77,25 @@ BuildRequires:	kf5-kwindowsystem-devel >= %{kf_ver}
 BuildRequires:	kf5-kxmlgui-devel >= %{kf_ver}
 BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
 BuildRequires:	kp5-breeze-devel >= 5.23.0
-BuildRequires:	kp5-kdecoration-devel >= 5.23.0
+BuildRequires:	kp5-kdecoration-devel >= %{version}
 BuildRequires:	kp5-kscreenlocker-devel
-BuildRequires:	lcms2-devel
+BuildRequires:	lcms2-devel >= 2
 BuildRequires:	libcap
 BuildRequires:	libcap-devel
-BuildRequires:	libdrm-devel >= 2.4.62
-BuildRequires:	libepoxy-devel
-BuildRequires:	libinput-devel >= 1.9
-BuildRequires:	libstdc++-devel
+BuildRequires:	libdrm-devel >= 2.4.112
+BuildRequires:	libepoxy-devel >= 1.3
+BuildRequires:	libinput-devel >= 1.19
+BuildRequires:	libstdc++-devel >= 6:8
 BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	ninja
-BuildRequires:	pipewire-devel >= 0.3
+BuildRequires:	pipewire-devel >= 0.3.29
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	plasma-wayland-protocols-devel >= 1.9.0
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	udev-devel
-BuildRequires:	wayland-devel >= 1.2
+BuildRequires:	wayland-devel >= 1.21
 BuildRequires:	wayland-egl-devel
+BuildRequires:	wayland-protocols >= 1.31
 BuildRequires:	xcb-util-cursor-devel
 BuildRequires:	xcb-util-image-devel
 BuildRequires:	xcb-util-keysyms-devel
@@ -98,18 +103,18 @@ BuildRequires:	xcb-util-wm-devel >= 0.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	xorg-lib-libxcvt-devel >= 0.1.1
-BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.7.0
-BuildRequires:	xorg-lib-libxkbcommon-x11-devel >= 0.7.0
+BuildRequires:	xorg-lib-libxkbcommon-devel >= 1.5.0
+BuildRequires:	xorg-lib-libxkbcommon-x11-devel >= 1.5.0
 BuildRequires:	xorg-xserver-Xwayland-devel
 BuildRequires:	xz
 Requires:	%{name}-data = %{version}-%{release}
+Requires:	Mesa-libgbm >= 21.3
 Requires:	Qt5Core >= %{qt_ver}
 Requires:	Qt5DBus >= %{qt_ver}
 Requires:	Qt5Gui >= %{qt_ver}
 Requires:	Qt5Network >= %{qt_ver}
 Requires:	Qt5Qml >= %{qt_ver}
 Requires:	Qt5Quick >= %{qt_ver}
-Requires:	Qt5Script >= %{qt_ver}
 Requires:	Qt5Widgets >= %{qt_ver}
 Requires:	Qt5X11Extras >= %{qt_ver}
 Requires:	kf5-kactivities >= %{kf_ver}
@@ -134,12 +139,14 @@ Requires:	kf5-kwidgetsaddons >= %{kf_ver}
 Requires:	kf5-kwindowsystem >= %{kf_ver}
 Requires:	kf5-kxmlgui >= %{kf_ver}
 Requires:	kf5-plasma-framework >= %{kf_ver}
-Requires:	kp5-kdecoration >= 5.18.0
+Requires:	kp5-kdecoration >= %{version}
 Requires:	kp5-kscreenlocker
 Requires:	libcap
-Requires:	libdrm >= 2.4.62
-Requires:	libinput >= 1.9
+Requires:	libdrm >= 2.4.112
+Requires:	libepoxy >= 1.3
+Requires:	libinput >= 1.19
 Requires:	libxcb >= 1.10
+Requires:	pipewire-libs >= 0.3.29
 Requires:	xcb-util-wm >= 0.4
 Requires:	xorg-lib-libxkbcommon >= 0.7.0
 Suggests:	hwdata
@@ -175,9 +182,9 @@ Requires:	Qt5Gui-devel >= %{qt_ver}
 Requires:	kf5-kconfig-devel >= %{kf_ver}
 Requires:	kf5-kcoreaddons-devel >= %{kf_ver}
 Requires:	kf5-kwindowsystem-devel >= %{kf_ver}
-Requires:	libepoxy-devel
-Requires:	libstdc++-devel
-Requires:	libxcb-devel
+Requires:	libepoxy-devel >= 1.3
+Requires:	libstdc++-devel >= 6:8
+Requires:	libxcb-devel >= 1.10
 
 %description devel
 Header files for %{kpname} development.
