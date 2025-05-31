@@ -1,10 +1,10 @@
 # TODO:
-# - libhybris
-#
+# - libhybris?
 #
 # Conditional build:
-%bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.12
+%bcond_with	tests		# test suite
+
+%define		kp_ver		5.27.12
 %define		kf_ver		5.102.0
 %define		qt_ver		5.15.2
 %define		kpname		kwin
@@ -16,7 +16,7 @@ Version:	5.27.12
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+Source0:	https://download.kde.org/stable/plasma/%{kp_ver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	007e657cd8ef4bc3d7f07e90e49e3aba
 Patch0:		kp5-kwin-absolute-path.patch
 URL:		http://www.kde.org/
@@ -361,8 +361,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libkcmkwincommon.so
-%{_libdir}/libkwin.so
 %{_libdir}/libkwineffects.so
 %{_libdir}/libkwinglutils.so
 %{_includedir}/kwin*.h
