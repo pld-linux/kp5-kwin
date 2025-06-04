@@ -117,6 +117,7 @@ Requires:	Qt5Qml >= %{qt_ver}
 Requires:	Qt5Quick >= %{qt_ver}
 Requires:	Qt5Widgets >= %{qt_ver}
 Requires:	Qt5X11Extras >= %{qt_ver}
+Requires:	kde-common-dirs >= 0.9
 Requires:	kf5-kactivities >= %{kf_ver}
 Requires:	kf5-kcmutils >= %{kf_ver}
 Requires:	kf5-kcompletion >= %{kf_ver}
@@ -197,13 +198,13 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 #%%patch -P 0 -p1
 
 %build
-rm -rf po/id
 
 %cmake -B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	-DHTML_INSTALL_DIR=%{_kdedocdir}
+
 %ninja_build -C build
 
 %if %{with tests}
@@ -212,8 +213,8 @@ ctest
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %ninja_install -C build
-rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{sr,sr@latin}
 
 %find_lang %{kpname} --all-name --with-kde
 
