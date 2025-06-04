@@ -1,5 +1,6 @@
 # TODO:
 # - libhybris?
+# - QAccessibilityClient
 #
 # Conditional build:
 %bcond_with	tests		# test suite
@@ -51,26 +52,22 @@ BuildRequires:	kf5-extra-cmake-modules >= %{kf_ver}
 BuildRequires:	kf5-kactivities-devel >= %{kf_ver}
 BuildRequires:	kf5-kauth-devel >= %{kf_ver}
 BuildRequires:	kf5-kcmutils-devel >= %{kf_ver}
-BuildRequires:	kf5-kcompletion-devel >= %{kf_ver}
 BuildRequires:	kf5-kconfig-devel >= %{kf_ver}
 BuildRequires:	kf5-kconfigwidgets-devel >= %{kf_ver}
 BuildRequires:	kf5-kcoreaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kcrash-devel >= %{kf_ver}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kdeclarative-devel >= %{kf_ver}
 BuildRequires:	kf5-kdoctools-devel >= %{kf_ver}
-BuildRequires:	kf5-kdbusaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kglobalaccel-devel >= %{kf_ver}
 BuildRequires:	kf5-ki18n-devel >= %{kf_ver}
-BuildRequires:	kf5-kiconthemes-devel >= %{kf_ver}
 BuildRequires:	kf5-kidletime-devel >= %{kf_ver}
-BuildRequires:	kf5-kio-devel >= %{kf_ver}
 BuildRequires:	kf5-kirigami2-devel >= %{kf_ver}
 BuildRequires:	kf5-knewstuff-devel >= %{kf_ver}
 BuildRequires:	kf5-knotifications-devel >= %{kf_ver}
 BuildRequires:	kf5-kpackage-devel >= %{kf_ver}
 BuildRequires:	kf5-krunner-devel >= %{kf_ver}
 BuildRequires:	kf5-kservice-devel >= %{kf_ver}
-BuildRequires:	kf5-ktextwidgets-devel >= %{kf_ver}
 BuildRequires:	kf5-kwayland-devel >= %{kf_ver}
 BuildRequires:	kf5-kwidgetsaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kwindowsystem-devel >= %{kf_ver}
@@ -109,37 +106,41 @@ BuildRequires:	xorg-xserver-Xwayland-devel
 BuildRequires:	xz
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	Mesa-libgbm >= 21.3
+Requires:	Qt5Concurrent >= %{qt_ver}
 Requires:	Qt5Core >= %{qt_ver}
 Requires:	Qt5DBus >= %{qt_ver}
 Requires:	Qt5Gui >= %{qt_ver}
 Requires:	Qt5Network >= %{qt_ver}
 Requires:	Qt5Qml >= %{qt_ver}
 Requires:	Qt5Quick >= %{qt_ver}
+Requires:	Qt5Quick-controls >= %{qt_ver}
 Requires:	Qt5Widgets >= %{qt_ver}
 Requires:	Qt5X11Extras >= %{qt_ver}
 Requires:	kde-common-dirs >= 0.9
 Requires:	kf5-kactivities >= %{kf_ver}
+Requires:	kf5-kauth >= %{kf_ver}
 Requires:	kf5-kcmutils >= %{kf_ver}
-Requires:	kf5-kcompletion >= %{kf_ver}
 Requires:	kf5-kconfig >= %{kf_ver}
 Requires:	kf5-kconfigwidgets >= %{kf_ver}
 Requires:	kf5-kcoreaddons >= %{kf_ver}
 Requires:	kf5-kcrash >= %{kf_ver}
+Requires:	kf5-kdbusaddons >= %{kf_ver}
 Requires:	kf5-kdeclarative >= %{kf_ver}
 Requires:	kf5-kglobalaccel >= %{kf_ver}
 Requires:	kf5-ki18n >= %{kf_ver}
 Requires:	kf5-kidletime >= %{kf_ver}
-Requires:	kf5-kio >= %{kf_ver}
+Requires:	kf5-kirigami2 >= %{kf_ver}
 Requires:	kf5-knewstuff >= %{kf_ver}
 Requires:	kf5-knotifications >= %{kf_ver}
 Requires:	kf5-kpackage >= %{kf_ver}
+Requires:	kf5-krunner >= %{kf_ver}
 Requires:	kf5-kservice >= %{kf_ver}
-Requires:	kf5-ktextwidgets >= %{kf_ver}
 Requires:	kf5-kwayland >= %{kf_ver}
 Requires:	kf5-kwidgetsaddons >= %{kf_ver}
 Requires:	kf5-kwindowsystem >= %{kf_ver}
 Requires:	kf5-kxmlgui >= %{kf_ver}
 Requires:	kf5-plasma-framework >= %{kf_ver}
+Requires:	kp5-breeze >= 5.23.0
 Requires:	kp5-kdecoration >= %{version}
 Requires:	kp5-kscreenlocker
 Requires:	libcap
@@ -148,8 +149,11 @@ Requires:	libepoxy >= 1.3
 Requires:	libinput >= 1.19
 Requires:	libxcb >= 1.10
 Requires:	pipewire-libs >= 0.3.29
+Requires:	wayland >= 1.21
 Requires:	xcb-util-wm >= 0.4
-Requires:	xorg-lib-libxkbcommon >= 0.7.0
+Requires:	xorg-lib-libxcvt >= 0.1.1
+Requires:	xorg-lib-libxkbcommon >= 1.5.0
+Requires:	xorg-lib-libxkbcommon-x11 >= 1.5.0
 Suggests:	hwdata
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -198,12 +202,14 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 #%%patch -P 0 -p1
 
 %build
-
 %cmake -B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	-DHTML_INSTALL_DIR=%{_kdedocdir}
+	-DHTML_INSTALL_DIR=%{_kdedocdir} \
+	-DXwayland_EXECUTABLE:PATH=/usr/bin/Xwayland \
+	-Dhwdata_DIR=/lib/hwdata \
+	-Dhwdata_PNPIDS_FILE=/lib/hwdata/pnp.ids
 
 %ninja_build -C build
 
