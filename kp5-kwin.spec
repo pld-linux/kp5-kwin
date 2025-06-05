@@ -1,6 +1,5 @@
 # TODO:
 # - libhybris?
-# - QAccessibilityClient
 #
 # Conditional build:
 %bcond_with	tests		# test suite
@@ -82,6 +81,7 @@ BuildRequires:	libcap-devel
 BuildRequires:	libdrm-devel >= 2.4.112
 BuildRequires:	libepoxy-devel >= 1.3
 BuildRequires:	libinput-devel >= 1.19
+BuildRequires:	libqaccessibilityclient-qt5-devel
 BuildRequires:	libstdc++-devel >= 6:8
 BuildRequires:	libxcb-devel >= 1.10
 BuildRequires:	ninja
